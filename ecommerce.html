@@ -281,3 +281,36 @@
     </main>
 </body>
 </html>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-analytics.js";
+  import { getDatabase, ref, runTransaction } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAhdOXP6y-oFWlNLZFWbrX5XGtJwdEEZXs",
+    authDomain: "sclat-aaa8c.firebaseapp.com",
+    projectId: "sclat-aaa8c",
+    storageBucket: "sclat-aaa8c.firebasestorage.app",
+    messagingSenderId: "972479254968",
+    appId: "1:972479254968:web:229b022cdbf896b6257f4d",
+    measurementId: "G-8NYZTQ5GL5"
+  };
+
+  // Inicializar Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getDatabase(app);
+
+  // Referencia al contador en la base de datos
+  const visitasRef = ref(db, 'estadisticas/contadorVisitas');
+
+  // Ejecutar el incremento de forma segura
+  runTransaction(visitasRef, (valorActual) => {
+    return (valorActual || 0) + 1;
+  }).then(() => {
+    console.log("Sclat: Visita registrada con éxito.");
+  }).catch((error) => {
+    // Si da error de permisos, revisamos las Rules
+    console.error("Error de registro:", error);
+  });
+</script>
