@@ -1,0 +1,329 @@
+/* =========================================
+   VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
+:root {
+    --bg-black: #000000;
+    --cian-tech: #00f2ff;
+    --purple-tech: #bc00ff;
+    --text-white: #ffffff;
+    --text-gray: rgba(255, 255, 255, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+.ambient-glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vw;
+    background: radial-gradient(circle, 
+        rgba(188, 0, 255, 0.08) 0%, 
+        rgba(0, 242, 255, 0.04) 40%, 
+        transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* =========================================
+   NAVEGACIÓN
+   ========================================= */
+nav {
+    width: 100%;
+    padding: 25px 5%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-brand {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    background: linear-gradient(to right, var(--cian-tech), var(--purple-tech));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--cian-tech);
+    text-decoration: none;
+}
+
+.btn-back {
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 15px;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+.btn-back:hover {
+    border-color: var(--text-white);
+    background: rgba(255,255,255,0.1);
+}
+
+/* =========================================
+   SECCIÓN HERO (HOME)
+   ========================================= */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 5% 50px;
+}
+
+.logo-hero-container {
+    width: 100%;
+    max-width: 550px;
+    margin-bottom: 10px;
+}
+
+.logo-hero-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 30px rgba(0, 242, 255, 0.25));
+}
+
+h1 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(1.8rem, 6vw, 3.5rem);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    color: var(--text-gray);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 18px 45px;
+    border: 1px solid var(--cian-tech);
+    color: var(--cian-tech);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: all 0.4s ease;
+    border-radius: 4px;
+}
+
+.btn-primary:hover {
+    background-color: var(--cian-tech);
+    color: #000;
+    box-shadow: 0 0 40px var(--cian-tech);
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   GRILLA DE SERVICIOS (FIX DE CUADROS)
+   ========================================= */
+.info-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 150px 5% 100px;
+}
+
+.tag {
+    color: var(--cian-tech);
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* =========================================
+   GRILLA DE SERVICIOS (FIX DEFINITIVO)
+   ========================================= */
+.grid-servicios {
+    display: grid;
+    /* Esto asegura que se creen columnas de cuadros */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px;
+    padding: 20px 0;
+}
+
+/* El enlace debe ser un bloque que no altere el flujo */
+.card-link {
+    text-decoration: none !important;
+    display: grid; /* Cambiado a grid para que el hijo (card) llene el espacio */
+    color: inherit;
+    outline: none;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 35px;
+    border-radius: 4px;
+    height: 100%; /* Obliga a todos los cuadros a tener la misma altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* El efecto de hover para que se note que es clickeable */
+.card-link:hover .card {
+    border-color: var(--cian-tech);
+    background: rgba(0, 242, 255, 0.02);
+    transform: scale(1.02); /* Crece un poquito en lugar de solo subir */
+    box-shadow: 0 10px 40px rgba(0, 242, 255, 0.15);
+}
+
+.card-icon {
+    color: var(--purple-tech);
+    font-family: 'Syncopate', sans-serif;
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+}
+
+.card h3 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    color: var(--text-white);
+    text-transform: uppercase;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+.ai-card {
+    border-color: rgba(188, 0, 255, 0.3);
+}
+
+.info-footer {
+    margin-top: 60px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 40px;
+}
+
+/* =========================================
+   RESPONSIVE (CELULARES)
+   ========================================= */
+@media (max-width: 768px) {
+    .logo-hero-container {
+        max-width: 320px;
+        margin-bottom: 5px;
+    }
+
+    .hero {
+        padding-top: 100px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        letter-spacing: 0;
+    }
+
+    .info-container {
+        padding-top: 120px;
+    }
+
+    .grid-servicios {
+        grid-template-columns: 1fr;
+    }
+}
+/* =========================================
+   EFECTOS DE INTERACCIÓN (SCLAT TECH)
+   ========================================= */
+
+/* 1. Transición suave para la tarjeta */
+.card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* Movimiento ultra fluido */
+    z-index: 1;
+}
+
+/* 2. El Brillo Neón (Hover) */
+.card-link:hover .card {
+    border-color: var(--cian-tech);
+    background: rgba(0, 242, 255, 0.05); /* Un toque de color de fondo */
+    transform: translateY(-8px) scale(1.01); /* Sube y crece apenas un poco */
+    box-shadow: 0 15px 40px rgba(0, 242, 255, 0.15), 
+                inset 0 0 20px rgba(0, 242, 255, 0.05); /* Brillo interno y externo */
+}
+
+/* 3. Luz que recorre el borde (Sutil) */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.card-link:hover .card::before {
+    left: 100%; /* El destello cruza la tarjeta al pasar el mouse */
+}
+
+/* 4. Efecto en el icono y el título */
+.card-link:hover .card-icon {
+    color: var(--cian-tech); /* Cambia de púrpura a cian para avisar que es clickeable */
+    text-shadow: 0 0 10px var(--cian-tech);
+    transition: 0.3s;
+}
+
+.card-link:hover h3 {
+    letter-spacing: 1px; /* El título se expande sutilmente */
+    transition: 0.4s;
+}
+
+/* 5. Estilo especial para la tarjeta de IA */
+.ai-card:hover {
+    border-color: var(--purple-tech) !important;
+    box-shadow: 0 15px 40px rgba(188, 0, 255, 0.2) !important;
+}
